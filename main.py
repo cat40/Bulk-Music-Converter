@@ -16,8 +16,11 @@ def goByBy():
     sys.exit()
 
 def openMusicFile():
-    global fname
-    fname = filedialog.askdirectory()
+    global dirname
+    dirname = filedialog.askdirectory()
+
+def run():
+    print 'running'
 
 
 window = tk.Tk()
@@ -35,5 +38,8 @@ from_ = tk.Spinbox(window, values=tuple(VALIDEXTS), wrap=True)
 to = tk.Spinbox(window, values=tuple(VALIDEXTS), wrap=True)
 from_.pack()
 to.pack()
+
+start = tk.Button(window, command=run, text='start')
+start.pack()
 
 tk.mainloop()
