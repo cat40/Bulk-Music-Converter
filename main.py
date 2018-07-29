@@ -8,9 +8,11 @@ import sys
 
 '''
 todo:
-run button
+display directory name somewhere
 '''
 VALIDEXTS = ['.mp3', '.mp4']  # todo add more
+dirname = None
+
 def goByBy():
     window.destroy()
     sys.exit()
@@ -20,7 +22,15 @@ def openMusicFile():
     dirname = filedialog.askdirectory()
 
 def run():
-    print 'running'
+    # make sure directory has been initalized
+    if dirname is None:
+        return
+    fromext = from_.get()
+    toext = to.get()
+    for fname in (os.path.join(root, filename) for root, _, filenames in os.walk(dirname) for filename in filenames):
+        base, ext = os.path.splitext(fname)
+        if ext == fromext:
+            os.system('ffmpeg {topath} -i {frompath}'.format(topath=base+toext, frompath=fname))
 
 
 window = tk.Tk()
