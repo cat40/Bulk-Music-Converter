@@ -31,7 +31,9 @@ def run():
     for fname in (os.path.join(root, filename) for root, _, filenames in os.walk(dirname) for filename in filenames):
         base, ext = os.path.splitext(fname)
         if ext == fromext:
-            os.system('ffmpeg {topath} -i {frompath}'.format(topath=base+toext, frompath=fname))
+            cmd = 'ffmpeg "{topath}" -i "{frompath}"'.format(topath=base+toext, frompath=fname)
+            print cmd
+            os.system(cmd)
 
 
 window = tk.Tk()
