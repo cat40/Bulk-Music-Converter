@@ -9,6 +9,7 @@ import sys
 '''
 todo:
 display directory name somewhere
+make spinboxes a drop-down menu
 '''
 VALIDEXTS = ['.mp3', '.mp4']  # todo add more
 dirname = None
@@ -44,9 +45,13 @@ mainmenu.add_cascade(label='File', menu=filemenu)
 
 window.config(menu=mainmenu)
 
-from_ = tk.Spinbox(window, values=tuple(VALIDEXTS), wrap=True)
-to = tk.Spinbox(window, values=tuple(VALIDEXTS), wrap=True)
+fromlabel = tk.Label(window, text='convert from')
+tolabel = tk.Label(window, text='to')
+from_ = tk.Spinbox(window, values=tuple(VALIDEXTS), wrap=True, text='from')
+to = tk.Spinbox(window, values=tuple(VALIDEXTS), wrap=True, text='to')
+fromlabel.pack()
 from_.pack()
+tolabel.pack()
 to.pack()
 
 start = tk.Button(window, command=run, text='start')
